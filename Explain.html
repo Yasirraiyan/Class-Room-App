@@ -1,0 +1,285 @@
+1️⃣ LogIn Component
+import React from "react";
+import { useState } from "react";
+
+
+এখানে React লাইব্রেরি import করা হয়েছে।
+
+useState হল React Hook, যা state maintain করতে ব্যবহৃত হয়।
+
+export default function LogIn() {
+  const [username, setUserName] = useState(" ");
+  const [password, setPassword] = useState(" ");
+  const [error, setError] = useState(" ");
+  const [success, setSuccess] = useState(false);
+
+
+LogIn নামের একটি functional component।
+
+username, password, error, success state declare করা হয়েছে।
+
+useState(initialValue) ব্যবহার করে initial value assign করা হয়েছে।
+
+const handlelogin = () => {
+
+
+handlelogin একটি function যা login button click এ চালানো হবে।
+
+if (!username && !password) {
+  setError(" Both Required!");
+  setSuccess(false);
+  alert("Both Required");
+  return;
+}
+
+
+যদি username ও password দুইটাই খালি থাকে, error দেখাবে এবং success false করবে।
+
+if (!username) {
+  setError("Username is required!");
+  setSuccess(false);
+  alert("Username is required!");
+  return;
+}
+if (!password) {
+  setError("Password is required!");
+  setSuccess(false);
+  alert("Password is required!");
+  return;
+}
+
+
+আলাদাভাবে username বা password না থাকলে warning দেখানো।
+
+setError("");
+setSuccess(true);
+alert(`Welcome, ${username}! Login Successful.`);
+
+
+সব ঠিক থাকলে success state true হবে এবং alert show করবে।
+
+return (
+  <div className="login-container">
+    <h1>Login</h1>
+    <div>
+      <label>Username:</label>
+      <input
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Enter username"
+      />
+    </div>
+
+
+JSX return করে HTML এর মতো structure তৈরি করে।
+
+value={username} দিয়ে input কে state এর সাথে bind করা হয়েছে।
+
+onChange handler input update করে।
+
+<div>
+  <label>Password:</label>
+  <input
+    type="password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    placeholder="Enter password"
+  />
+</div>
+<button onClick={handleLogin}>Login</button>
+
+
+Password input এবং Login button।
+
+Button click এ handleLogin function execute হবে।
+
+{error && <p style={{ color: "red" }}>{error}</p>}
+{success && <p style={{ color: "green" }}>Login Successful!</p>}
+
+
+Conditional rendering: error থাকলে লাল text, success হলে সবুজ text দেখাবে।
+
+2️⃣ SignUp Component
+export default function SignUp() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+
+Similar ভাবে SignUp এর জন্য state declare করা হয়েছে।
+
+role state student বা teacher নির্বাচন করার জন্য।
+
+const handleClick = () => {
+  if (!username && !password && !confirmPassword) {
+    setError("All field required!");
+    setSuccess(false);
+    return;
+  }
+  if (password !== confirmPassword) {
+    setError("Password don't match!");
+    setSuccess(false);
+    return;
+  }
+  setError("");
+  setSuccess(true);
+  alert("Welcome! .Sign Up Successful");
+};
+
+
+Validation: ফাঁকা field check, password match check।
+
+সব ঠিক থাকলে success message।
+
+return (
+  <div className="sign-up-container">
+    <h1>Sign Up</h1>
+    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+    <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+    <select value={role} onChange={(e) => setRole(e.target.value)}>
+      <option value="">--Select Role--</option>
+      <option value="teacher">Teacher</option>
+      <option value="student">Student</option>
+    </select>
+    <button onClick={handleClick}>Sign Up</button>
+    {error && <p style={{ color: "red" }}>{error}</p>}
+    {success && <p style={{ color: "green" }}>Sign Up Successful!</p>}
+  </div>
+);
+
+
+Form, input fields এবং role selection।
+
+Conditional rendering error/success messages।
+
+3️⃣ Teacher Component & Create Component
+export default function Teacher() {
+  const [showform, setshowform] = useState(false);
+
+  return (
+    <div className="teacher-container">
+      <button onClick={() => setshowform(!showform)}>Create(+)</button>
+      {showform && <Create />}
+    </div>
+  );
+}
+
+
+Teacher view: button click এ form toggle করা হবে।
+
+showform state true হলে <Create /> component দেখাবে।
+
+export default function Create() {
+  const [classname, setclassname] = useState("");
+  const [section, setsection] = useState("");
+  const [room, setroom] = useState("");
+  const [description, setdescription] = useState("");
+  const [subject, setsubject] = useState("");
+  const [error, seterror] = useState("");
+
+  const handleValidate = () => {
+    if (!classname) return seterror("Please fill up classname first!");
+    if (!section) return seterror("Please fill up section!");
+    if (!room) return seterror("Please fill up room!");
+    if (!description) return seterror("Please fill up description!");
+    if (!subject) return seterror("Please fill up subject!");
+    seterror("");
+    alert("Form Submitted Successfully!. Class Created!");
+  };
+
+
+Teacher class creation form।
+
+handleValidate সমস্ত input validate করে এবং success হলে alert।
+
+return (
+  <div className="create-form">
+    <input type="text" value={classname} onChange={(e) => setclassname(e.target.value)} />
+    <input type="text" value={section} onChange={(e) => setsection(e.target.value)} />
+    <input type="text" value={subject} onChange={(e) => setsubject(e.target.value)} />
+    <input type="text" value={room} onChange={(e) => setroom(e.target.value)} />
+    <input type="text" value={description} onChange={(e) => setdescription(e.target.value)} />
+    <button onClick={handleValidate}>Submit</button>
+    {error && <p style={{ color: "red", marginTop: "5px" }}>{error}</p>}
+  </div>
+);
+
+
+Form structure।
+
+Conditional error display।
+
+4️⃣ AssignmentUpload Component
+export default function AssignmentUpload() {
+  const [file, setFile] = useState(null);
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
+
+
+State for file, title, and message।
+
+const handleFileChange = (e) => {
+  setFile(e.target.files[0]);
+};
+
+
+File select করলে state update হবে।
+
+const handleUpload = (e) => {
+  e.preventDefault();
+  if (!title) {
+    setMessage("Please enter assignment title!");
+    return;
+  }
+  if (!file) {
+    setMessage("Please select a file to upload!");
+    return;
+  }
+  setMessage(`Assignment "${title}" uploaded successfully!`);
+  setTitle("");
+  setFile(null);
+  document.getElementById("fileInput").value = null;
+};
+
+
+Upload button click এ validation, message, input reset।
+
+e.preventDefault() page reload রোধ করে।
+
+return (
+  <div>
+    <h2>Upload Assignment</h2>
+    <form onSubmit={handleUpload}>
+      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <input type="file" id="fileInput" onChange={handleFileChange} />
+      <button type="submit">Upload</button>
+    </form>
+    {message && <p style={{ color: "green", marginTop: "10px" }}>{message}</p>}
+  </div>
+);
+
+
+Form, file input, submit button, and success message।
+
+✅ React এর মূল concepts যেগুলো এখানে ব্যবহার হয়েছে:
+
+Functional Components (function LogIn() { ... })
+
+useState Hook (state maintain করতে)
+
+Event Handlers (onClick, onChange)
+
+Conditional Rendering ({error && ...}, {success && ...})
+
+Form Validation (input check, error messages)
+
+Prevent Page Reload (e.preventDefault())
+
+JSX Syntax (HTML + JS integration)
+
+আমি চাইলে আমি তোমার জন্য এই পুরো project এর একটি ছো
