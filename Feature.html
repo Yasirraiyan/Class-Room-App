@@ -1,0 +1,111 @@
+1️⃣ Login Feature
+
+Feature:
+
+User username & password দিয়ে login করবে
+
+Validation: কোন field খালি থাকলে warning
+
+Successful login হলে success message
+
+Implemented In: LogIn.js
+
+How:
+
+username, password, error, success state
+
+handleLogin() function for validation
+
+Input fields: onChange → update state
+
+Conditional rendering: {error && ...}, {success && ...}
+
+2️⃣ SignUp Feature
+
+Feature:
+
+User username, password, confirm password এবং role নির্বাচন করে sign up
+
+Validation: empty field, password match
+
+Success message on successful signup
+
+Implemented In: SignUp.js
+
+How:
+
+username, password, confirmPassword, role, error, success state
+
+handleClick() function for validation
+
+<select> for role (Teacher / Student)
+
+Conditional rendering for error & success
+
+3️⃣ Teacher Class Creation Feature
+
+Feature:
+
+Teacher নতুন class create করবে
+
+Form: class name, section, subject, room, description
+
+Validation: empty field check
+
+Success message on successful submission
+
+Implemented In: Teacher.js + Create.js
+
+How:
+
+Teacher component: toggle form visibility → showform state
+
+Create component: input fields for class details, validation function
+
+Button click → validation → alert
+
+Conditional error display
+
+4️⃣ Assignment Upload Feature
+
+Feature:
+
+Teacher assignment upload করবে
+
+Form: title + file selection
+
+Validation: title/file empty check
+
+Success message on upload
+
+Implemented In: AssignmentUpload.js
+
+How:
+
+title, file, message state
+
+handleFileChange() updates file state
+
+handleUpload() validates, shows message, resets input
+
+e.preventDefault() prevents page reload
+
+5️⃣ General Frontend Features
+
+State management: useState hook
+
+Event handling: onClick, onChange
+
+Conditional rendering: {condition && <p>...</p>}
+
+Form validation: inline error messages + alerts
+
+UI toggle: Teacher “Create” button shows/hides form
+
+💡 Summary Table
+
+Feature	Component	State	Event	Validation
+Login	LogIn	username, password, error, success	onClick, onChange	Empty field check
+SignUp	SignUp	username, password, confirmPassword, role, error, success	onClick, onChange	Empty field, password match
+Teacher Create Class	Teacher + Create	showform, classname, section, subject, room, description, error	onClick, onChange	Empty field check
+Assignment Upload	AssignmentUpload	title, file, message	onClick, onChange	Empty field check
