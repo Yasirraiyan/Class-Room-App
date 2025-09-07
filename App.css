@@ -1,0 +1,115 @@
+/* General reset */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6fa;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Teacher Container */
+.teacher-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.teacher-container button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.teacher-container button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Create Form */
+.create-form {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Form Heading */
+.create-form h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.create-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+/* Input Fields */
+.create-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.create-form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+}
+
+/* Error Message */
+.create-form p {
+  color: #d9534f;
+  margin-bottom: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Submit Button */
+.create-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-form button:hover {
+  background-color: #357ab8;
+  transform: translateY(-2px);
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
